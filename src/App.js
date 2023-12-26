@@ -28,7 +28,7 @@ function App() {
         <div className="App bg-dark">
             <InputArea value={inputValue} onChange={(e) => setInputValue(e.target.value)} onButtonClick={add} />
             <div className="lists">
-                <ListGroup title="Pending" items={pendingTodoList} onButtonClick={(todo) => switchTodo("pending", "ongoing", todo)}></ListGroup>
+                <ListGroup title="Pending" items={pendingTodoList} onButtonClick={(todo) => switchTodo("pending", "ongoing", todo)} />
                 <ListGroup title="Ongoing" items={ongoingTodoList} onButtonClick={(todo) => switchTodo("ongoing", "finished", todo)} />
                 <ListGroup title="Finished" items={finishedTodoList} />
             </div>
