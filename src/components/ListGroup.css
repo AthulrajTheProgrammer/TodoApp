@@ -1,0 +1,54 @@
+.title.pending {
+    color: rgb(118, 209, 255);
+}
+
+.title.ongoing {
+    color: rgb(255, 201, 93);
+}
+
+.title.finished {
+    color: rgb(107, 255, 94);
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.list-group-item.pending {
+    color: rgb(118, 209, 255);
+    border-color: rgb(118, 209, 255);
+    background-color: rgba(118, 209, 255, 0.1);
+}
+
+.list-group-item.ongoing {
+    color: rgb(255, 201, 93);
+    border-color: rgb(255, 201, 93);
+    background-color: rgba(255, 201, 93, 0.1);
+}
+
+.list-group-item.finished {
+    color: rgb(107, 255, 94);
+    border-color: rgb(107, 255, 94);
+    background-color: rgba(107, 255, 94, 0.1);
+}
+
+.list-group-item {
+    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid;
+    position: relative;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.list-group {
+    gap: 10px;
+}
+
+.todo-btns {
+    position: absolute;
+    right: 10px;
+    width: 25px;
+    background-color: transparent;
+    border: none;
+}

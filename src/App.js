@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import InputArea from "./components/InputArea";
+import ListGroup from "./components/ListGroup";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [inputValue, setInputValue] = useState("");
+    const [pendingTodoList, setPendingTodoList] = useState([]);
+    const [ongoingTodoList, setOngoingTodoList] = useState([]);
+    const [finishedTodoList, setFinishedTodoList] = useState([]);
+    const add = () => {
+        setPendingTodoList([...pendingTodoList, { id: Date.now(), name: inputValue, status: "pending" }]);
+        setInputValue("");
+    };
+    const switchTodo = (from, to, todo) => {
+        if (from === "pending" && to === "ongoing") {
+            pendingTodoList.splice(pendingTodoList.indexOf(todo), 1);
+            setPendingTodoList([...pendingTodoList]);
+            setOngoingTodoList([...ongoingTodoList, todo]);
+        } else {
+            ongoingTodoList.splice(ongoingTodoList.indexOf(todo), 1);
+            setOngoingTodoList([...ongoingTodoList]);
+            setFinishedTodoList([...finishedTodoList, todo]);
+        }
+        todo.status = to;
+    };
+    return (
+        <div className="App bg-dark">
+            <InputArea value={inputValue} onChange={(e) => setInputValue(e.target.value)} onButtonClick={add} />
+            <div className="lists">
+                <ListGroup title="Pending" items={pendingTodoList} onButtonClick={(todo) => switchTodo("pending", "ongoing", todo)}></ListGroup>
+                <ListGroup title="Ongoing" items={ongoingTodoList} onButtonClick={(todo) => switchTodo("ongoing", "finished", todo)} />
+                <ListGroup title="Finished" items={finishedTodoList} />
+            </div>
+        </div>
+    );
 }
 
 export default App;
